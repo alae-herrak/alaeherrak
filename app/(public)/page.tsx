@@ -190,19 +190,16 @@ const HomeCard = ({
 );
 
 const TechIcon = ({ name, icon, color, darkText }: (typeof TECH_STACK)[0]) => {
-  // Dynamic tailwind class construction based on the logic you provided
-  const baseColors = darkText
-    ? "bg-[var(--brand-color)] text-black md:text-white md:hover:text-black"
-    : "bg-[var(--brand-color)] text-white";
-
   return (
     <Badge
       variant="outline"
       style={{ "--brand-color": color } as React.CSSProperties}
       className={cn(
-        "text-md border-muted-foreground/20 bg-background flex items-center gap-2 px-5 py-2.5 transition-all duration-300 hover:border-transparent hover:shadow-lg",
-        "md:bg-transparent md:hover:bg-[var(--brand-color)]",
-        baseColors,
+        "text-md border-muted-foreground/20 bg-background flex items-center gap-2 px-5 py-2.5 transition-all duration-300",
+        "hover:border-transparent hover:shadow-lg md:bg-transparent",
+        "md:hover:bg-[var(--brand-color)]",
+        darkText ? "md:hover:text-black" : "md:hover:text-white",
+        "text-foreground",
       )}
     >
       <span className="text-xl">
@@ -212,12 +209,11 @@ const TechIcon = ({ name, icon, color, darkText }: (typeof TECH_STACK)[0]) => {
     </Badge>
   );
 };
-
 // --- MAIN PAGE ---
 
 export default function HomePage() {
   return (
-    <div className="relative mx-auto max-w-6xl space-y-32 px-6 py-12">
+    <div className="relative mx-auto max-w-6xl space-y-32 px-6 py-12 pt-20">
       <ScrollIndicator />
 
       <GridBackground>
