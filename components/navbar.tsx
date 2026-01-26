@@ -11,12 +11,7 @@ import {
   useMotionValueEvent,
   AnimatePresence,
 } from "motion/react";
-
-const NAV_ITEMS = [
-  { name: "Projects", link: "/projects" },
-  { name: "Blog", link: "/blog" },
-  { name: "Contact", link: "/contact" },
-];
+import { NAV_ITEMS } from "@/config/site";
 
 export default function Navbar({ className }: { className?: string }) {
   const pathname = usePathname();
