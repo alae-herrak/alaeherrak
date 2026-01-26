@@ -188,7 +188,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-background text-foreground selection:bg-primary selection:text-primary-foreground;
+    @apply bg-background text-foreground;
     letter-spacing: var(--tracking-normal);
   }
 }
