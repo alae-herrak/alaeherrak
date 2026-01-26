@@ -117,7 +117,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} selection:bg-primary selection:text-primary-foreground flex min-h-screen flex-col antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} selection:bg-primary selection:text-primary-foreground antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -126,7 +126,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="flex-grow">{children}</main>
+          <main>{children}</main>
         </ThemeProvider>
       </body>
     </html>
