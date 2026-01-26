@@ -16,6 +16,8 @@ import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ScrollIcon, ScrollIndicator } from "@/components/ui/scroll-indicator";
+import Link from "next/link";
+import { NAV_ITEMS } from "@/config/site";
 
 // --- DATA CONFIGURATION ---
 
@@ -255,13 +257,18 @@ export default function HomePage() {
 
           <div className="animate-in fade-in slide-in-from-left-3 mt-4 mb-8 flex flex-wrap justify-center gap-4 duration-1000">
             <Button size="lg" className="group gap-2 rounded-full px-8" asChild>
-              <a href="#process">
-                View My Process
+              <Link href="/projects">
+                Explore Projects
                 <ArrowRight className="transition-transform group-hover:translate-x-1" />
-              </a>
+              </Link>
             </Button>
-            <Button size="lg" variant="outline" className="rounded-full px-8">
-              Read Technical Blog
+            <Button
+              size="lg"
+              variant="outline"
+              className="rounded-full px-8"
+              asChild
+            >
+              <Link href="/contact">Let's Talk</Link>
             </Button>
           </div>
 
@@ -359,7 +366,7 @@ export default function HomePage() {
       </section>
 
       {/* --- PRODUCTION LIFECYCLE --- */}
-      <section id="process" className="scroll-mt-20 space-y-12">
+      <section className="scroll-mt-20 space-y-12">
         <div className="flex flex-col items-center gap-4 text-center">
           <Badge variant="outline" className="px-4 py-1">
             Workflow
@@ -398,7 +405,7 @@ export default function HomePage() {
       </section>
 
       {/* --- TECH STACK --- */}
-      <section id="stack" className="scroll-mt-32">
+      <section className="scroll-mt-32">
         <div className="border-border/40 bg-secondary/5 relative overflow-hidden rounded-[3rem] border px-6 py-24">
           <div className="bg-primary/5 absolute -right-24 -bottom-24 h-64 w-64 rounded-full blur-[100px]" />
           <div className="container mx-auto max-w-4xl space-y-16 text-center">
@@ -435,10 +442,7 @@ export default function HomePage() {
       </section>
 
       {/* --- CONTACT SECTION --- */}
-      <section
-        id="contact"
-        className="flex scroll-mt-32 flex-col items-center gap-10 py-10"
-      >
+      <section className="flex scroll-mt-32 flex-col items-center gap-10 py-10">
         <div className="space-y-4 text-center">
           <h2 className="text-4xl font-bold tracking-tighter md:text-6xl">
             Let's build something{" "}
@@ -476,17 +480,25 @@ export default function HomePage() {
         <p className="text-muted-foreground text-sm font-medium">
           Alae Herrak &copy; {new Date().getFullYear()}
         </p>
-        <div className="flex gap-8">
-          {["Resume", "Blog"].map((link) => (
-            <a
-              key={link}
-              href="#"
-              className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+
+        <nav className="flex gap-8">
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.name}
+              href={item.link}
+              className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
             >
-              {link}
-            </a>
+              {item.name}
+            </Link>
           ))}
-        </div>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
+          >
+            Resume
+          </a>
+        </nav>
       </footer>
     </div>
   );

@@ -7,11 +7,13 @@ import Navbar from "@/components/navbar";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const viewport: Viewport = {
@@ -19,9 +21,12 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
+  width: "device-width",
+  initialScale: 1,
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://alaeherrak.com"),
   title: {
     default: "Alae Herrak | Full Stack Product Engineer",
     template: "%s | Alae Herrak",
@@ -32,35 +37,31 @@ export const metadata: Metadata = {
     "Alae Herrak",
     "Product Engineer",
     "Full Stack Developer",
-    "Tauri and Electron Integration",
-    "Systems Optimization",
+    "Tauri",
+    "Electron",
+    "Next.js",
+    "TypeScript",
     "Software Architecture",
   ],
   authors: [{ name: "Alae Herrak" }],
   creator: "Alae Herrak",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://alaeherrak.com",
     title: "Alae Herrak | Full Stack Product Engineer",
     description:
-      "Architecting resilient ecosystems and high-performance desktop applications. Explore my process and technical blog.",
+      "Architecting resilient ecosystems and high-performance web and desktop applications. Explore my process and technical blog.",
     siteName: "Alae Herrak Portfolio",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Alae Herrak | Product Engineering Portfolio",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Alae Herrak | Full Stack Product Engineer",
     description: "Bridging ambiguous needs with high-performance systems.",
     creator: "@HerrakAlae",
-    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -75,6 +76,29 @@ export const metadata: Metadata = {
   },
 };
 
+// JSON-LD for Search Engines
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Alae Herrak",
+  jobTitle: "Full Stack Product Engineer",
+  url: "https://alaeherrak.com",
+  sameAs: [
+    "https://github.com/alae-herrak",
+    "https://linkedin.com/in/alae-herrak-ba9039210",
+    "https://x.com/HerrakAlae",
+  ],
+  description:
+    "Product Engineer specializing in high-performance systems and full-stack architecture.",
+  knowsAbout: [
+    "Software Engineering",
+    "Web Development",
+    "Tauri",
+    "React",
+    "System Architecture",
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -83,13 +107,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} selection:bg-primary selection:text-primary-foreground antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} selection:bg-primary selection:text-primary-foreground flex min-h-screen flex-col antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -98,7 +126,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          {children}
+          <main className="flex-grow">{children}</main>
         </ThemeProvider>
       </body>
     </html>
