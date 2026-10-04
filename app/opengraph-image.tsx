@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 
-export const alt = "Alae Herrak | Full Stack Product Engineer";
+export const alt = "Alae Herrak | Full-Stack Software Engineer";
 export const size = {
   width: 1200,
   height: 630,
@@ -77,16 +77,16 @@ export default async function Image() {
 
       <p
         style={{
-          fontSize: 42,
+          fontSize: 38,
           color: "#a1a1aa",
           textAlign: "center",
-          maxWidth: "900px",
+          maxWidth: "920px",
           marginTop: "20px",
           lineHeight: 1.4,
         }}
       >
-        Full Stack Product Engineer bridging ambiguous needs with
-        high-performance systems.
+        Full-Stack Software Engineer specializing in resilient web applications
+        and high-performance systems.
       </p>
 
       <div style={{ display: "flex", gap: "20px", marginTop: "60px" }}>

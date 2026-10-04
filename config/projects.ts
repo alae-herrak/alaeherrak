@@ -22,7 +22,7 @@ export const PROJECTS: Project[] = [
     slug: "qarawiyyin",
     title: "Project Qarawiyyin",
     subtitle: "University Management Ecosystem",
-    role: "Lead Frontend Developer",
+    role: "Lead Full-Stack Engineer",
     platforms: [
       { name: "Admin Desktop", icon: Monitor },
       { name: "Student Web Portal", icon: Globe },
@@ -30,7 +30,7 @@ export const PROJECTS: Project[] = [
     ],
     stack: ["Electron", "TypeScript", "React", "Tailwind CSS", "WebSockets"],
     highlights: [
-      "Component-level RBAC (Read/Write permissions) assigned by Master Admin.",
+      "Engineered component-level RBAC and real-time state synchronization via WebSockets.",
       "Module-based architecture covering HR, Pedagogy, Exams, and Payments.",
       "Automated certificate issuance pipeline replacing paper workflows.",
       "Custom Form Builder for student registration with Excel data ingestion.",

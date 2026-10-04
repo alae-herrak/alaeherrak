@@ -197,7 +197,7 @@ export default function ProjectsPage() {
             I&apos;m always open to discussing new projects and opportunities.
           </p>
           <Button size="lg" className="group gap-2 rounded-full px-8" asChild>
-            <Link href="/contact">
+            <Link href="/#contact">
               Let&apos;s Talk
               <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>

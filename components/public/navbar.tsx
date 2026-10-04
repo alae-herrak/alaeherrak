@@ -55,7 +55,12 @@ export default function Navbar({ className }: { className?: string }) {
         <div className="relative flex items-center gap-1">
           <AnimatePresence>
             {NAV_ITEMS.map((item, index) => {
-              const isActive = pathname === item.link;
+              const isActive =
+                item.link === "/"
+                  ? pathname === "/"
+                  : item.link.startsWith("/#")
+                    ? false
+                    : pathname.startsWith(item.link);
               return (
                 <Link
                   key={item.name}
