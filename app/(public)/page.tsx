@@ -17,14 +17,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { ScrollIcon, ScrollIndicator } from "@/components/ui/scroll-indicator";
 import Link from "next/link";
-import { NAV_ITEMS } from "@/config/site";
+import { NAV_ITEMS, SITE_CONFIG } from "@/config/site";
 
 // --- DATA CONFIGURATION ---
 
 const HERO_WORDS = [
-  { text: "Full" },
-  { text: "Stack" },
-  { text: "Product" },
+  { text: "Full-Stack" },
+  { text: "Software" },
   { text: "Engineer" },
 ];
 
@@ -96,72 +95,72 @@ const LIFECYCLE_STEPS = [
   },
 ];
 
-const TECH_STACK = [
+interface TechItem {
+  name: string;
+  icon?: string;
+  customIcon?: React.ReactNode;
+  color: string;
+  darkText?: boolean;
+}
+
+interface TechCategory {
+  title: string;
+  description: string;
+  skills: TechItem[];
+}
+
+const HonoIcon = () => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className="size-4 shrink-0 transition-transform duration-300 group-hover/badge:scale-110"
+    aria-hidden="true"
+  >
+    <path d="M12.445.002a45.529 45.529 0 0 0-5.252 8.146 8.595 8.595 0 0 1-.555-.53 27.796 27.796 0 0 0-1.205-1.542 8.762 8.762 0 0 0-1.251 2.12 20.743 20.743 0 0 0-1.448 5.88 8.867 8.867 0 0 0 .338 3.468c1.312 3.48 3.794 5.593 7.445 6.337 3.055.438 5.755-.333 8.097-2.312 2.677-2.59 3.359-5.634 2.047-9.132a33.287 33.287 0 0 0-2.988-5.59A91.34 91.34 0 0 0 12.615.053a.216.216 0 0 0-.17-.051Zm-.336 3.906a50.93 50.93 0 0 1 4.794 6.552c.448.767.817 1.57 1.108 2.41.606 2.386-.044 4.354-1.951 5.904-1.845 1.298-3.87 1.683-6.072 1.156-2.376-.737-3.75-2.335-4.121-4.794a5.107 5.107 0 0 1 .242-2.266c.358-.908.79-1.774 1.3-2.601l1.446-2.121a397.33 397.33 0 0 0 3.254-4.24Z" />
+  </svg>
+);
+
+const TECH_CATEGORIES: TechCategory[] = [
   {
-    name: "react",
-    icon: "devicon-react-original",
-    color: "#61dafb",
-    darkText: true,
+    title: "Frontend & Native",
+    description: "High-performance reactive interfaces and desktop runtimes.",
+    skills: [
+      { name: "React", icon: "devicon-react-original", color: "#61dafb", darkText: true },
+      { name: "Next.js", icon: "devicon-nextjs-plain", color: "#000000" },
+      { name: "TypeScript", icon: "devicon-typescript-plain", color: "#007acc" },
+      { name: "Tailwind CSS", icon: "devicon-tailwindcss-plain", color: "#38bdf8", darkText: true },
+      { name: "Vite", icon: "devicon-vitejs-plain", color: "#bd34fe" },
+      { name: "Tauri", icon: "devicon-tauri-plain", color: "#ffc131", darkText: true },
+      { name: "Electron", icon: "devicon-electron-original", color: "#47848f" },
+      { name: "HTML / CSS", icon: "devicon-html5-plain", color: "#e34f26" },
+    ],
   },
   {
-    name: "typescript",
-    icon: "devicon-typescript-plain",
-    color: "#007acc",
-    darkText: false,
+    title: "Backend & Data",
+    description: "Scalable server architectures, type-safe data modeling, and APIs.",
+    skills: [
+      { name: "Node.js", icon: "devicon-nodejs-plain", color: "#5fa04e" },
+      { name: "Bun", icon: "devicon-bun-plain", color: "#fbf0df", darkText: true },
+      { name: "Express", icon: "devicon-express-original", color: "#444444" },
+      { name: "Hono", customIcon: <HonoIcon />, color: "#e36002" },
+      { name: "MySQL", icon: "devicon-mysql-plain", color: "#046586" },
+      { name: "PostgreSQL", icon: "devicon-postgresql-plain", color: "#336791" },
+      { name: "Prisma", icon: "devicon-prisma-plain", color: "#2d3748" },
+      { name: "REST APIs", icon: "devicon-fastapi-plain", color: "#05998b" },
+      { name: "WebSockets", icon: "devicon-socketio-original", color: "#010101" },
+    ],
   },
   {
-    name: "tailwindcss",
-    icon: "devicon-tailwindcss-plain",
-    color: "#38bdf8",
-    darkText: true,
-  },
-  {
-    name: "electron",
-    icon: "devicon-electron-original",
-    color: "#47848f",
-    darkText: false,
-  },
-  {
-    name: "tauri",
-    icon: "devicon-tauri-plain",
-    color: "#ffc131",
-    darkText: true,
-  },
-  {
-    name: "nodejs",
-    icon: "devicon-nodejs-plain",
-    color: "#5fa04e",
-    darkText: false,
-  },
-  {
-    name: "express",
-    icon: "devicon-express-original",
-    color: "#444444",
-    darkText: false,
-  },
-  {
-    name: "mysql",
-    icon: "devicon-mysql-plain",
-    color: "#046586",
-    darkText: false,
-  },
-  {
-    name: "mongodb",
-    icon: "devicon-mongodb-plain",
-    color: "#4faa41",
-    darkText: false,
-  },
-  {
-    name: "prisma",
-    icon: "devicon-prisma-plain",
-    color: "#2d3748",
-    darkText: false,
-  },
-  {
-    name: "github",
-    icon: "devicon-github-plain",
-    color: "#191a18",
-    darkText: false,
+    title: "DevOps & Tooling",
+    description: "Automated delivery pipelines, containers, and developer toolchains.",
+    skills: [
+      { name: "Git", icon: "devicon-git-plain", color: "#f05032" },
+      { name: "GitHub Actions", icon: "devicon-githubactions-plain", color: "#2088ff" },
+      { name: "Docker", icon: "devicon-docker-plain", color: "#2496ed" },
+      { name: "CI/CD", icon: "devicon-jenkins-line", color: "#d24939" },
+      { name: "PowerShell", icon: "devicon-powershell-plain", color: "#5391fe" },
+      { name: "Linux / Bash", icon: "devicon-linux-plain", color: "#fcc624", darkText: true },
+    ],
   },
 ];
 
@@ -191,24 +190,31 @@ const HomeCard = ({
   </Card>
 );
 
-const TechIcon = ({ name, icon, color, darkText }: (typeof TECH_STACK)[0]) => {
+const TechIcon = ({ name, icon, customIcon, color, darkText }: TechItem) => {
   return (
-    <Badge
-      variant="outline"
+    <div
       style={{ "--brand-color": color } as React.CSSProperties}
       className={cn(
-        "text-md border-muted-foreground/20 bg-background flex items-center gap-2 px-5 py-2.5 transition-all duration-300",
-        "hover:border-transparent hover:shadow-lg md:bg-transparent",
-        "md:hover:bg-[var(--brand-color)]",
-        darkText ? "md:hover:text-black" : "md:hover:text-white",
+        "group/badge border-muted-foreground/20 bg-background relative flex h-11 items-center gap-2.5 rounded-xl border px-3.5 shadow-xs transition-all duration-300 md:bg-transparent",
+        "hover:border-transparent hover:shadow-lg hover:-translate-y-0.5",
+        "hover:bg-[var(--brand-color)]",
+        darkText ? "hover:text-black" : "hover:text-white",
         "text-foreground",
       )}
     >
-      <span className="text-xl">
-        <i className={icon}></i>
+      <div className="flex size-5 shrink-0 items-center justify-center transition-transform duration-300 group-hover/badge:scale-110">
+        {customIcon ? (
+          customIcon
+        ) : (
+          <span className="text-base leading-none">
+            <i className={icon}></i>
+          </span>
+        )}
+      </div>
+      <span className="text-xs font-semibold tracking-tight whitespace-nowrap transition-colors duration-300">
+        {name}
       </span>
-      <span className="font-medium">{name}</span>
-    </Badge>
+    </div>
   );
 };
 // --- MAIN PAGE ---
@@ -242,16 +248,20 @@ export default function HomePage() {
             />
 
             <p className="text-muted-foreground mx-auto max-w-2xl text-xl leading-relaxed text-balance">
-              Bridging the gap between{" "}
+              Specializing in resilient web applications, granular access
+              control systems, and high-performance cross-platform runtimes with{" "}
               <span className="text-foreground decoration-primary/30 font-medium underline decoration-2 underline-offset-4">
-                ambiguous client needs
-              </span>{" "}
-              and{" "}
-              <span className="text-foreground decoration-primary/30 font-medium underline decoration-2 underline-offset-4">
-                high-performance systems
+                React
               </span>
-              . Currently architecting resilient ecosystems within
-              high-ownership product teams.
+              ,{" "}
+              <span className="text-foreground decoration-primary/30 font-medium underline decoration-2 underline-offset-4">
+                TypeScript
+              </span>
+              , and{" "}
+              <span className="text-foreground decoration-primary/30 font-medium underline decoration-2 underline-offset-4">
+                Node.js
+              </span>
+              . Proven track record of owning architecture from discovery to production.
             </p>
           </div>
 
@@ -268,7 +278,7 @@ export default function HomePage() {
               className="rounded-full px-8"
               asChild
             >
-              <Link href="/contact">Let's Talk</Link>
+              <Link href="#contact">Let&apos;s Talk</Link>
             </Button>
           </div>
 
@@ -404,48 +414,50 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* --- TECH STACK --- */}
-      <section className="scroll-mt-32">
-        <div className="border-border/40 bg-secondary/5 relative overflow-hidden rounded-[3rem] border px-6 py-24">
-          <div className="bg-primary/5 absolute -right-24 -bottom-24 h-64 w-64 rounded-full blur-[100px]" />
-          <div className="container mx-auto max-w-4xl space-y-16 text-center">
-            <div className="space-y-4">
-              <h2 className="font-serif text-3xl font-bold tracking-tight italic md:text-4xl">
-                Technical Arsenal
-              </h2>
-              <p className="text-muted-foreground mx-auto max-w-xl text-lg">
-                Battle-tested technologies for production systems.
-              </p>
-            </div>
-            <div className="flex flex-wrap justify-center gap-4">
-              {TECH_STACK.map((tech) => (
-                <TechIcon key={tech.name} {...tech} />
-              ))}
-            </div>
-            <div className="border-border/20 flex flex-col items-center gap-6 border-t pt-10">
-              <p className="text-muted-foreground text-[10px] font-bold tracking-[0.3em] uppercase">
-                Currently Exploring
-              </p>
-              <div className="flex flex-wrap justify-center gap-8 md:gap-12">
-                {["Hono", "PostgreSQL", "Docker", "CI/CD"].map((focus) => (
-                  <span
-                    key={focus}
-                    className="text-foreground/40 hover:text-primary cursor-default text-sm font-semibold transition-colors"
-                  >
-                    {focus}
-                  </span>
+      {/* --- TECH ARSENAL --- */}
+      <section className="scroll-mt-32 space-y-12">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <Badge variant="outline" className="px-4 py-1">
+            Competencies
+          </Badge>
+          <h2 className="font-serif text-3xl font-bold tracking-tight italic md:text-5xl">
+            Technical Arsenal
+          </h2>
+          <p className="text-muted-foreground max-w-2xl text-lg leading-relaxed">
+            Battle-tested technologies and workflows honed in production environments.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-3">
+          {TECH_CATEGORIES.map((category) => (
+            <div
+              key={category.title}
+              className="border-border/50 bg-secondary/5 hover:border-primary/30 relative flex flex-col rounded-3xl border p-7 transition-all duration-300 hover:shadow-xl"
+            >
+              <div className="mb-6 space-y-2">
+                <h3 className="text-xl font-bold tracking-tight">
+                  {category.title}
+                </h3>
+                <p className="text-muted-foreground text-xs leading-relaxed">
+                  {category.description}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2.5">
+                {category.skills.map((skill) => (
+                  <TechIcon key={skill.name} {...skill} />
                 ))}
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </section>
 
       {/* --- CONTACT SECTION --- */}
-      <section className="flex scroll-mt-32 flex-col items-center gap-10 py-10">
+      <section id="contact" className="flex scroll-mt-32 flex-col items-center gap-10 py-10">
         <div className="space-y-4 text-center">
           <h2 className="text-4xl font-bold tracking-tighter md:text-6xl">
-            Let's build something{" "}
+            Let&apos;s build something{" "}
             <span className="text-primary font-serif italic">exceptional</span>.
           </h2>
           <p className="text-muted-foreground text-xl">
@@ -453,23 +465,56 @@ export default function HomePage() {
           </p>
         </div>
         <div className="flex flex-wrap justify-center gap-4">
-          <Button size="lg" className="h-14 rounded-full text-lg">
-            <Mail className="size-5" /> Get in Touch
+          <Button size="lg" className="h-14 rounded-full px-8 text-lg" asChild>
+            <a href={`mailto:${SITE_CONFIG.email}?subject=Opportunity%20/%20Project%20Inquiry`}>
+              <Mail className="size-5" /> Get in Touch
+            </a>
           </Button>
           <div className="flex gap-4">
             <Button
               variant="outline"
               size="icon"
               className="size-14 rounded-full"
+              asChild
             >
-              <i className="devicon-github-plain text-2xl"></i>
+              <a
+                href={SITE_CONFIG.links.github}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub Profile"
+              >
+                <i className="devicon-github-plain text-2xl"></i>
+              </a>
             </Button>
             <Button
               variant="outline"
               size="icon"
               className="size-14 rounded-full"
+              asChild
             >
-              <i className="devicon-linkedin-plain text-2xl"></i>
+              <a
+                href={SITE_CONFIG.links.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn Profile"
+              >
+                <i className="devicon-linkedin-plain text-2xl"></i>
+              </a>
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              className="size-14 rounded-full"
+              asChild
+            >
+              <a
+                href={SITE_CONFIG.links.twitter}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="X Profile"
+              >
+                <i className="devicon-twitter-original text-2xl"></i>
+              </a>
             </Button>
           </div>
         </div>
@@ -481,7 +526,7 @@ export default function HomePage() {
           Alae Herrak &copy; {new Date().getFullYear()}
         </p>
 
-        <nav className="flex gap-8">
+        <nav className="flex items-center gap-8">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.name}
@@ -492,11 +537,10 @@ export default function HomePage() {
             </Link>
           ))}
           <a
-            href="/resume.pdf"
-            target="_blank"
+            href={`mailto:${SITE_CONFIG.email}?subject=Resume%20Request%20-%20Alae%20Herrak`}
             className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
           >
-            Resume
+            Request Resume
           </a>
         </nav>
       </footer>
