@@ -1,9 +1,10 @@
-﻿import {
+import {
   Monitor,
   Globe,
   Server,
   Smartphone,
   Cpu,
+  School,
   LucideIcon,
 } from "lucide-react";
 
@@ -220,6 +221,39 @@ export const PROJECTS: Project[] = [
     ],
     outcome:
       "Replaced manual spreadsheet-based budget tracking with a sub-15MB native desktop ERP, enforcing procedural validation across public procurement acts and treasury disbursements.",
+    links: [],
+  },
+  {
+    id: "storyland-edtech",
+    slug: "storyland-edtech",
+    title: "Storyland",
+    subtitle: "Gamified Reading Platform & Quiz Evaluation Engine",
+    role: "Lead Full-Stack Developer",
+    platforms: [
+      { name: "Student Web App", icon: Globe },
+      { name: "Desktop Client (Tauri v2)", icon: Monitor },
+      { name: "School Admin Portal", icon: School },
+    ],
+    stack: [
+      "React",
+      "TypeScript",
+      "Bun",
+      "Express",
+      "Prisma",
+      "MariaDB",
+      "PixiJS",
+      "Tauri v2",
+      "Tailwind CSS",
+    ],
+    highlights: [
+      "Engineered multi-tenant school workspaces with role-based access for system admins, teachers, and elementary students.",
+      "Built an interactive 2D journey map with PixiJS canvas, unlocking progression milestones and discovery checkpoints based on student reading points.",
+      "Developed a timed quiz engine with countdowns, remainder-balanced 100-point scoring across arbitrary question counts, and once-per-day attempt rate limits.",
+      "Built a catalog import pipeline allowing schools to clone central library stories, replicate question sets, and manage local media assets.",
+      "Added batch student onboarding from Excel rosters using SheetJS with Moroccan Massar code validation and automated password generation.",
+    ],
+    outcome:
+      "Modernized reading tracking across elementary schools, replacing manual reading logs with automated quiz grading and school-wide reading leaderboards.",
     links: [],
   },
 ];
