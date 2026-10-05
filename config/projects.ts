@@ -29,6 +29,36 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
+    id: "yosan-budget",
+    slug: "yosan-budget",
+    title: "Yosan - Public Procurement & Budget ERP",
+    subtitle: "Desktop Budget Execution & Expenditure Lifecycle System",
+    role: "Lead Frontend Engineer",
+    platforms: [
+      { name: "Desktop Client (Tauri v2)", icon: Monitor },
+      { name: "Native Windows Bundle", icon: Cpu },
+    ],
+    stack: [
+      "Tauri v2",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Rust",
+      "Bun",
+      "xlsx",
+      "jsPDF",
+    ],
+    highlights: [
+      "Engineered a lightweight desktop client using Tauri v2, React 19, and Bun, featuring native OS file dialogs and background auto-updating via GitHub releases.",
+      "Modeled the Moroccan public expenditure pipeline: procurement act creation, supplier commission evaluation, delivery validation, tax withholdings (TVA/IS), and Treasury dispatch (Bordereau Trésor).",
+      "Implemented arbitrary-precision financial calculations using BigInt integer-cent conversion to prevent IEEE 754 floating-point drift in budget allocations.",
+      "Built a hierarchical Excel ingestion engine parsing 4-level budget structures (Chapitre > Article > Paragraphe > Ligne) with line-by-line syntax validation and client-side procurement PDF generation.",
+    ],
+    outcome:
+      "Replaced manual spreadsheet-based budget tracking with a sub-15MB native desktop ERP, enforcing procedural validation across public procurement acts and treasury disbursements.",
+    links: [],
+  },
+  {
     id: "smarthire",
     slug: "smarthire",
     title: "SmartHire",
@@ -89,26 +119,6 @@ export const PROJECTS: Project[] = [
       "Successfully migrated university operations from paper-based tracking to a unified digital ecosystem, providing the Dean with real-time oversight of all departments.",
   },
   {
-    slug: "nid",
-    title: "Project Nid",
-    subtitle: "Grant Application & Scoring System",
-    role: "Lead Full-Stack Engineer",
-    platforms: [
-      { name: "Admin Desktop", icon: Monitor },
-      { name: "Public Submission Portal", icon: Globe },
-    ],
-    stack: ["Electron", "Node.js", "Express", "React", "TypeScript", "MySQL"],
-    highlights: [
-      "Custom mathematical engine for business plan risk/success assessment.",
-      "Identity-gated submission flow with pre-validated ID white-listing.",
-      "Multi-step financial intake form with complex validation and data persistence.",
-      "Administrative analytics dashboard with real-time data visualization.",
-      "Digitized face-to-face manual processes into a secure automated pipeline.",
-    ],
-    outcome:
-      "Replaced manual Excel-based evaluations with a secure, automated decision-making tool, significantly reducing processing time and human error in grant distribution.",
-  },
-  {
     id: "exact-pos",
     slug: "exact-pos",
     title: "Exact POS & Retail ERP",
@@ -135,92 +145,6 @@ export const PROJECTS: Project[] = [
     ],
     outcome:
       "Streamlined retail checkout workflows and unified multi-device operations into a single synchronized register, handling daily transaction accounting and automated receipt issuance.",
-    links: [],
-  },
-  {
-    id: "mystore-cms",
-    slug: "mystore-cms",
-    title: "MyStore E-Commerce & Content CMS",
-    subtitle: "Administrative Back-Office & Storefront Management Engine",
-    role: "Lead Frontend Engineer",
-    platforms: [{ name: "Web Application (SPA)", icon: Globe }],
-    stack: [
-      "React",
-      "TypeScript",
-      "Vite",
-      "Tailwind CSS",
-      "Radix UI",
-      "Recharts",
-      "react-intl",
-    ],
-    highlights: [
-      "Architected an administrative back-office managing multi-variant catalog data, inventory levels, flash sale schedules, and media uploads via multipart/form-data.",
-      "Engineered a dual-state order fulfillment pipeline separating payment reconciliation from multi-stage shipping logistics (in-transit, delivery tracking, and returns).",
-      "Built a dynamic bilingual RTL/LTR engine supporting over 500 localized strings, automatically switching document direction and font families (Almarai for Arabic, Roboto for French).",
-      "Integrated a live storefront theme customizer with dynamic hex color tokens, banner sequencing, WYSIWYG rich-text editing, and Recharts sales turnover analytics.",
-    ],
-    outcome:
-      "Delivered a centralized operational dashboard replacing fragmented manual spreadsheets with unified order tracking, catalog management, and storefront customization.",
-    links: [],
-  },
-  {
-    id: "vaa-associations",
-    slug: "vaa-associations",
-    title: "VAA - Virtual Assistant for Associations",
-    subtitle: "Full-Stack NGO Governance & Document Automation Platform",
-    role: "Lead Full-Stack Developer",
-    platforms: [
-      { name: "Web Application (SPA & Next.js)", icon: Globe },
-      { name: "Node.js REST API", icon: Server },
-    ],
-    stack: [
-      "React",
-      "TypeScript",
-      "Node.js",
-      "Express",
-      "MySQL",
-      "Prisma",
-      "@react-pdf/renderer",
-      "Tailwind CSS",
-    ],
-    highlights: [
-      "Engineered a browser-side document compilation engine using @react-pdf/renderer with embedded Arabic typography (Cairo), generating legally compliant NGO bylaws, assembly minutes, and invoices without server rendering overhead.",
-      "Built an on-premise Arabic conversational NLP assistant using node-nlp and arabic-stemmer, featuring live model retraining and bulk dataset management via Excel.",
-      "Architected administrative modules for association lifecycle tracking: constituent assembly quorum logging, executive board registers, and grant opportunity aggregations.",
-      "Led the full-stack architecture across a decoupled Express/MySQL backend and Vite client, initiating a modernized Next.js 16 and Prisma ORM migration.",
-    ],
-    outcome:
-      "Digitized legal association formation and governance workflows across regional organizations, replacing manual paperwork with automated document compilation and self-contained Arabic NLP guidance.",
-    links: [],
-  },
-  {
-    id: "yosan-budget",
-    slug: "yosan-budget",
-    title: "Yosan - Public Procurement & Budget ERP",
-    subtitle: "Desktop Budget Execution & Expenditure Lifecycle System",
-    role: "Lead Frontend Engineer",
-    platforms: [
-      { name: "Desktop Client (Tauri v2)", icon: Monitor },
-      { name: "Native Windows Bundle", icon: Cpu },
-    ],
-    stack: [
-      "Tauri v2",
-      "React 19",
-      "TypeScript",
-      "Tailwind CSS v4",
-      "Rust",
-      "Bun",
-      "xlsx",
-      "jsPDF",
-    ],
-    highlights: [
-      "Engineered a lightweight desktop client using Tauri v2, React 19, and Bun, featuring native OS file dialogs and background auto-updating via GitHub releases.",
-      "Modeled the Moroccan public expenditure pipeline: procurement act creation, supplier commission evaluation, delivery validation, tax withholdings (TVA/IS), and Treasury dispatch (Bordereau Trésor).",
-      "Implemented arbitrary-precision financial calculations using BigInt integer-cent conversion to prevent IEEE 754 floating-point drift in budget allocations.",
-      "Built a hierarchical Excel ingestion engine parsing 4-level budget structures (Chapitre > Article > Paragraphe > Ligne) with line-by-line syntax validation and client-side procurement PDF generation.",
-    ],
-    outcome:
-      "Replaced manual spreadsheet-based budget tracking with a sub-15MB native desktop ERP, enforcing procedural validation across public procurement acts and treasury disbursements.",
     links: [],
   },
   {
@@ -254,6 +178,82 @@ export const PROJECTS: Project[] = [
     ],
     outcome:
       "Modernized reading tracking across elementary schools, replacing manual reading logs with automated quiz grading and school-wide reading leaderboards.",
+    links: [],
+  },
+  {
+    id: "vaa-associations",
+    slug: "vaa-associations",
+    title: "VAA - Virtual Assistant for Associations",
+    subtitle: "Full-Stack NGO Governance & Document Automation Platform",
+    role: "Lead Full-Stack Developer",
+    platforms: [
+      { name: "Web Application (SPA & Next.js)", icon: Globe },
+      { name: "Node.js REST API", icon: Server },
+    ],
+    stack: [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "MySQL",
+      "Prisma",
+      "@react-pdf/renderer",
+      "Tailwind CSS",
+    ],
+    highlights: [
+      "Engineered a browser-side document compilation engine using @react-pdf/renderer with embedded Arabic typography (Cairo), generating legally compliant NGO bylaws, assembly minutes, and invoices without server rendering overhead.",
+      "Built an on-premise Arabic conversational NLP assistant using node-nlp and arabic-stemmer, featuring live model retraining and bulk dataset management via Excel.",
+      "Architected administrative modules for association lifecycle tracking: constituent assembly quorum logging, executive board registers, and grant opportunity aggregations.",
+      "Led the full-stack architecture across a decoupled Express/MySQL backend and Vite client, initiating a modernized Next.js 16 and Prisma ORM migration.",
+    ],
+    outcome:
+      "Digitized legal association formation and governance workflows across regional organizations, replacing manual paperwork with automated document compilation and self-contained Arabic NLP guidance.",
+    links: [],
+  },
+  {
+    slug: "nid",
+    title: "Project Nid",
+    subtitle: "Grant Application & Scoring System",
+    role: "Lead Full-Stack Engineer",
+    platforms: [
+      { name: "Admin Desktop", icon: Monitor },
+      { name: "Public Submission Portal", icon: Globe },
+    ],
+    stack: ["Electron", "Node.js", "Express", "React", "TypeScript", "MySQL"],
+    highlights: [
+      "Custom mathematical engine for business plan risk/success assessment.",
+      "Identity-gated submission flow with pre-validated ID white-listing.",
+      "Multi-step financial intake form with complex validation and data persistence.",
+      "Administrative analytics dashboard with real-time data visualization.",
+      "Digitized face-to-face manual processes into a secure automated pipeline.",
+    ],
+    outcome:
+      "Replaced manual Excel-based evaluations with a secure, automated decision-making tool, significantly reducing processing time and human error in grant distribution.",
+  },
+  {
+    id: "mystore-cms",
+    slug: "mystore-cms",
+    title: "MyStore E-Commerce & Content CMS",
+    subtitle: "Administrative Back-Office & Storefront Management Engine",
+    role: "Lead Frontend Engineer",
+    platforms: [{ name: "Web Application (SPA)", icon: Globe }],
+    stack: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Radix UI",
+      "Recharts",
+      "react-intl",
+    ],
+    highlights: [
+      "Architected an administrative back-office managing multi-variant catalog data, inventory levels, flash sale schedules, and media uploads via multipart/form-data.",
+      "Engineered a dual-state order fulfillment pipeline separating payment reconciliation from multi-stage shipping logistics (in-transit, delivery tracking, and returns).",
+      "Built a dynamic bilingual RTL/LTR engine supporting over 500 localized strings, automatically switching document direction and font families (Almarai for Arabic, Roboto for French).",
+      "Integrated a live storefront theme customizer with dynamic hex color tokens, banner sequencing, WYSIWYG rich-text editing, and Recharts sales turnover analytics.",
+    ],
+    outcome:
+      "Delivered a centralized operational dashboard replacing fragmented manual spreadsheets with unified order tracking, catalog management, and storefront customization.",
     links: [],
   },
 ];
