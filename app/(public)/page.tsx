@@ -7,6 +7,7 @@ import { ScrollIcon, ScrollIndicator } from "@/components/ui/scroll-indicator";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import Link from "next/link";
 import { NAV_ITEMS, SITE_CONFIG } from "@/config/site";
+import { ContactForm } from "@/components/public/contact-form";
 
 // --- DATA CONFIGURATION ---
 
@@ -725,19 +726,27 @@ export default function HomePage() {
             Available for high-impact roles or specialized consulting.
           </p>
         </div>
-        <div className="flex flex-wrap justify-center gap-4">
-          <Button size="lg" className="h-14 rounded-full px-8 text-lg" asChild>
+
+        {/* Minimalist Contact Form */}
+        <ContactForm />
+
+        {/* Alternative Email Direct Link & Social Icons */}
+        <div className="flex flex-col items-center gap-6 pt-2">
+          <p className="text-muted-foreground text-xs font-mono">
+            Or reach out directly at{" "}
             <a
               href={`mailto:${SITE_CONFIG.email}?subject=Opportunity%20/%20Project%20Inquiry`}
+              className="text-primary underline-offset-4 hover:underline"
             >
-              <Mail className="size-5" /> Get in Touch
+              {SITE_CONFIG.email}
             </a>
-          </Button>
+          </p>
+
           <div className="flex gap-4">
             <Button
               variant="outline"
               size="icon"
-              className="size-14 rounded-full"
+              className="size-12 rounded-full"
               asChild
             >
               <a
@@ -746,13 +755,13 @@ export default function HomePage() {
                 rel="noreferrer"
                 aria-label="GitHub Profile"
               >
-                <i className="devicon-github-plain text-2xl"></i>
+                <i className="devicon-github-plain text-xl"></i>
               </a>
             </Button>
             <Button
               variant="outline"
               size="icon"
-              className="size-14 rounded-full"
+              className="size-12 rounded-full"
               asChild
             >
               <a
@@ -761,22 +770,7 @@ export default function HomePage() {
                 rel="noreferrer"
                 aria-label="LinkedIn Profile"
               >
-                <i className="devicon-linkedin-plain text-2xl"></i>
-              </a>
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="size-14 rounded-full"
-              asChild
-            >
-              <a
-                href={SITE_CONFIG.links.twitter}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="X Profile"
-              >
-                <i className="devicon-twitter-original text-2xl"></i>
+                <i className="devicon-linkedin-plain text-xl"></i>
               </a>
             </Button>
           </div>
@@ -799,12 +793,6 @@ export default function HomePage() {
               {item.name}
             </Link>
           ))}
-          <a
-            href={`mailto:${SITE_CONFIG.email}?subject=Resume%20Request%20-%20Alae%20Herrak`}
-            className="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
-          >
-            Request Resume
-          </a>
         </nav>
       </footer>
     </div>
