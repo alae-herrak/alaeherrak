@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { MoonStar, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface ThemeToggleProps {
   variant?: "default" | "ghost";
@@ -23,20 +24,33 @@ export function ThemeToggle({
 
   if (!mounted) {
     return (
-      <Button variant={variant} size="icon" className={className} disabled>
-        <div className="h-4 w-4" />
+      <Button
+        variant={variant}
+        size="icon"
+        className={cn("focus-visible:ring-2 focus-visible:ring-primary/40", className)}
+        disabled
+        aria-label="Toggle theme (loading)"
+      >
+        <span className="sr-only">Toggle theme</span>
+        <div className="h-4 w-4" aria-hidden="true" />
       </Button>
     );
   }
+
+  const isDark = theme === "dark";
 
   return (
     <Button
       variant={variant}
       size="icon"
-      className={className}
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      className={cn("focus-visible:ring-2 focus-visible:ring-primary/40", className)}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
     >
-      {theme === "dark" ? <Sun /> : <MoonStar />}
+      <span className="sr-only">
+        {isDark ? "Switch to light theme" : "Switch to dark theme"}
+      </span>
+      {isDark ? <Sun aria-hidden="true" /> : <MoonStar aria-hidden="true" />}
     </Button>
   );
 }

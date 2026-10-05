@@ -12,6 +12,22 @@ import { PROJECTS } from "@/config/projects";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Featured Projects",
+  description:
+    "Explore production systems and architectural breakdowns built by Alae Herrak, including public sector ERPs, AI candidate evaluation engines, and POS clients.",
+  alternates: {
+    canonical: "/projects",
+  },
+  openGraph: {
+    title: "Featured Projects | Alae Herrak",
+    description:
+      "Explore production systems and architectural breakdowns built by Alae Herrak, including public sector ERPs, AI candidate evaluation engines, and POS clients.",
+    url: "https://alaeherrak.com/projects",
+  },
+};
 
 export default function ProjectsPage() {
   return (

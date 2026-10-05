@@ -150,12 +150,14 @@ export function ContactForm() {
           >
             Your Name
           </Label>
-          {activeErrors.name && (
-            <span className="text-[11px] font-medium text-destructive flex items-center gap-1">
-              <AlertCircle className="size-3" />
-              {activeErrors.name}
-            </span>
-          )}
+          <div id="name-error" aria-live="polite" className="min-h-[16px]">
+            {activeErrors.name && (
+              <span className="text-[11px] font-medium text-destructive flex items-center gap-1">
+                <AlertCircle className="size-3" aria-hidden="true" />
+                {activeErrors.name}
+              </span>
+            )}
+          </div>
         </div>
         <Input
           id="name"
@@ -167,10 +169,11 @@ export function ContactForm() {
           placeholder="e.g. Alex Morgan"
           disabled={isPending}
           aria-invalid={!!activeErrors.name}
+          aria-describedby={activeErrors.name ? "name-error" : undefined}
           className={cn(
-            "h-11 rounded-xl bg-background/50 text-sm transition-all focus-visible:ring-primary/30",
+            "h-11 rounded-xl bg-background/50 text-sm transition-all focus-visible:ring-2 focus-visible:ring-primary/40",
             activeErrors.name &&
-              "border-destructive/60 focus-visible:ring-destructive/30"
+              "border-destructive/60 focus-visible:ring-destructive/40"
           )}
         />
       </div>
@@ -184,12 +187,14 @@ export function ContactForm() {
           >
             Email Address
           </Label>
-          {activeErrors.email && (
-            <span className="text-[11px] font-medium text-destructive flex items-center gap-1">
-              <AlertCircle className="size-3" />
-              {activeErrors.email}
-            </span>
-          )}
+          <div id="email-error" aria-live="polite" className="min-h-[16px]">
+            {activeErrors.email && (
+              <span className="text-[11px] font-medium text-destructive flex items-center gap-1">
+                <AlertCircle className="size-3" aria-hidden="true" />
+                {activeErrors.email}
+              </span>
+            )}
+          </div>
         </div>
         <Input
           id="email"
@@ -201,10 +206,11 @@ export function ContactForm() {
           placeholder="alex@example.com"
           disabled={isPending}
           aria-invalid={!!activeErrors.email}
+          aria-describedby={activeErrors.email ? "email-error" : undefined}
           className={cn(
-            "h-11 rounded-xl bg-background/50 text-sm transition-all focus-visible:ring-primary/30",
+            "h-11 rounded-xl bg-background/50 text-sm transition-all focus-visible:ring-2 focus-visible:ring-primary/40",
             activeErrors.email &&
-              "border-destructive/60 focus-visible:ring-destructive/30"
+              "border-destructive/60 focus-visible:ring-destructive/40"
           )}
         />
       </div>
@@ -219,13 +225,16 @@ export function ContactForm() {
             Message
           </Label>
           <div className="flex items-center gap-3">
-            {activeErrors.message && (
-              <span className="text-[11px] font-medium text-destructive flex items-center gap-1">
-                <AlertCircle className="size-3" />
-                {activeErrors.message}
-              </span>
-            )}
+            <div id="message-error" aria-live="polite" className="min-h-[16px]">
+              {activeErrors.message && (
+                <span className="text-[11px] font-medium text-destructive flex items-center gap-1">
+                  <AlertCircle className="size-3" aria-hidden="true" />
+                  {activeErrors.message}
+                </span>
+              )}
+            </div>
             <span
+              id="message-char-count"
               className={cn(
                 "text-[10px] font-mono",
                 values.message.length > 2800
@@ -247,26 +256,39 @@ export function ContactForm() {
           rows={4}
           disabled={isPending}
           aria-invalid={!!activeErrors.message}
+          aria-describedby={
+            activeErrors.message
+              ? "message-error message-char-count"
+              : "message-char-count"
+          }
           className={cn(
-            "min-h-[120px] resize-y rounded-xl bg-background/50 text-sm transition-all focus-visible:ring-primary/30",
+            "min-h-[120px] resize-y rounded-xl bg-background/50 text-sm transition-all focus-visible:ring-2 focus-visible:ring-primary/40",
             activeErrors.message &&
-              "border-destructive/60 focus-visible:ring-destructive/30"
+              "border-destructive/60 focus-visible:ring-destructive/40"
           )}
         />
       </div>
 
       {/* General Form Error / Rate limit notification */}
       {state.error && !state.fieldErrors && (
-        <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-3.5 text-xs text-destructive flex items-start gap-2.5">
-          <AlertCircle className="size-4 shrink-0 mt-0.5" />
+        <div
+          role="alert"
+          aria-live="polite"
+          className="rounded-xl border border-destructive/30 bg-destructive/10 p-3.5 text-xs text-destructive flex items-start gap-2.5"
+        >
+          <AlertCircle className="size-4 shrink-0 mt-0.5" aria-hidden="true" />
           <span>{state.error}</span>
         </div>
       )}
 
       {/* Success Notification */}
       {state.success && (
-        <div className="rounded-xl border border-primary/30 bg-primary/10 p-3.5 text-xs text-primary flex items-start gap-2.5">
-          <CheckCircle2 className="size-4 shrink-0 mt-0.5" />
+        <div
+          role="status"
+          aria-live="polite"
+          className="rounded-xl border border-primary/30 bg-primary/10 p-3.5 text-xs text-primary flex items-start gap-2.5"
+        >
+          <CheckCircle2 className="size-4 shrink-0 mt-0.5" aria-hidden="true" />
           <span>Message received. I will review and reply to your email shortly.</span>
         </div>
       )}
@@ -274,16 +296,17 @@ export function ContactForm() {
       <Button
         type="submit"
         disabled={isPending}
-        className="w-full h-11 rounded-xl font-semibold gap-2 transition-all shadow-sm"
+        aria-disabled={isPending}
+        className="w-full h-11 rounded-xl font-semibold gap-2 transition-all shadow-sm focus-visible:ring-2 focus-visible:ring-primary/50"
       >
         {isPending ? (
           <>
-            <Loader2 className="size-4 animate-spin" />
+            <Loader2 className="size-4 animate-spin" aria-hidden="true" />
             <span>Sending Message...</span>
           </>
         ) : (
           <>
-            <Send className="size-4" />
+            <Send className="size-4" aria-hidden="true" />
             <span>Send Message</span>
           </>
         )}

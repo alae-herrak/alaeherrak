@@ -94,14 +94,16 @@ const jsonLd = {
   description:
     "Full-Stack Software Engineer specializing in resilient web applications, granular access control systems, and high-performance cross-platform runtimes.",
   knowsAbout: [
-    "Software Engineering",
-    "Web Development",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Node.js",
     "Tauri",
     "Electron",
-    "React",
-    "TypeScript",
-    "Node.js",
-    "System Architecture",
+    "PostgreSQL",
+    "MySQL",
+    "Software Architecture",
+    "Web Development",
   ],
 };
 
