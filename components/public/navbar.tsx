@@ -45,14 +45,14 @@ export default function Navbar({ className }: { className?: string }) {
       }}
       className={cn("fixed inset-x-0 z-50 mx-auto w-full px-4", className)}
     >
-      <nav className="relative flex items-center justify-between rounded-full border border-border/80 bg-background/80 px-6 py-2.5 shadow-sm backdrop-blur-md dark:border-border/60 dark:bg-card/75">
+      <nav className="relative flex items-center justify-between rounded-full border border-border/80 bg-background/80 px-3 py-1.5 shadow-sm backdrop-blur-md sm:px-6 sm:py-2.5 dark:border-border/60 dark:bg-card/75">
         <Link href="/" className="flex shrink-0 items-center">
-          <span className="text-primary font-mono text-lg font-bold tracking-tighter transition-opacity hover:opacity-80">
+          <span className="text-primary font-mono text-base font-bold tracking-tighter transition-opacity hover:opacity-80 sm:text-lg">
             AH
           </span>
         </Link>
 
-        <div className="relative flex items-center gap-1">
+        <div className="relative flex items-center gap-0.5 sm:gap-1">
           <AnimatePresence>
             {NAV_ITEMS.map((item, index) => {
               const isActive =
@@ -68,7 +68,7 @@ export default function Navbar({ className }: { className?: string }) {
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   className={cn(
-                    "relative px-4 py-2 text-sm font-medium transition-colors duration-300",
+                    "relative px-2 py-1.5 text-xs font-medium transition-colors duration-300 sm:px-4 sm:py-2 sm:text-sm",
                     isActive
                       ? "text-primary"
                       : "text-muted-foreground hover:text-primary",
@@ -109,7 +109,7 @@ export default function Navbar({ className }: { className?: string }) {
         </div>
 
         <div className="flex shrink-0 items-center">
-          <ThemeToggle className="rounded-full" />
+          <ThemeToggle className="size-8 rounded-full sm:size-9" />
         </div>
       </nav>
     </motion.div>

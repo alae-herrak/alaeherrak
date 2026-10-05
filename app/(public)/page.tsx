@@ -165,7 +165,7 @@ const TechIcon = ({ name, icon, customIcon, color, darkText }: TechItem) => {
 
 export default function HomePage() {
   return (
-    <div className="relative mx-auto max-w-6xl space-y-32 px-6 py-12 pt-20">
+    <div className="relative mx-auto max-w-6xl space-y-32 px-4 py-12 pt-20 sm:px-6">
       <ScrollIndicator />
 
       <GridBackground>
@@ -236,9 +236,9 @@ export default function HomePage() {
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {/* 1. Yosan - Public Procurement & Budget ERP */}
-          <div className="portfolio-card group relative flex flex-col justify-between rounded-3xl p-8 transition-all md:p-9">
+          <div className="portfolio-card group relative flex flex-col justify-between rounded-3xl p-6 transition-all sm:p-8 md:p-9">
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="border-primary/20 bg-primary/10 text-primary rounded-full border px-3 py-1 font-mono text-xs font-bold tracking-wider uppercase">
                   Public Sector ERP
                 </span>
@@ -327,9 +327,9 @@ export default function HomePage() {
           </div>
 
           {/* 2. SmartHire - AI Recruitment Engine */}
-          <div className="portfolio-card group relative flex flex-col justify-between rounded-3xl p-8 transition-all md:p-9">
+          <div className="portfolio-card group relative flex flex-col justify-between rounded-3xl p-6 transition-all sm:p-8 md:p-9">
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="border-primary/20 bg-primary/10 text-primary rounded-full border px-3 py-1 font-mono text-xs font-bold tracking-wider uppercase">
                   AI Recruitment Engine
                 </span>
@@ -414,9 +414,9 @@ export default function HomePage() {
           </div>
 
           {/* 3. Project Qarawiyyin - University Management System */}
-          <div className="portfolio-card group relative flex flex-col justify-between rounded-3xl p-8 transition-all md:p-9">
+          <div className="portfolio-card group relative flex flex-col justify-between rounded-3xl p-6 transition-all sm:p-8 md:p-9">
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="border-primary/20 bg-primary/10 text-primary rounded-full border px-3 py-1 font-mono text-xs font-bold tracking-wider uppercase">
                   University ERP
                 </span>
@@ -499,9 +499,9 @@ export default function HomePage() {
           </div>
 
           {/* 4. Exact POS - Retail POS & ERP */}
-          <div className="portfolio-card group relative flex flex-col justify-between rounded-3xl p-8 transition-all md:p-9">
+          <div className="portfolio-card group relative flex flex-col justify-between rounded-3xl p-6 transition-all sm:p-8 md:p-9">
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="border-primary/20 bg-primary/10 text-primary rounded-full border px-3 py-1 font-mono text-xs font-bold tracking-wider uppercase">
                   Retail POS & ERP
                 </span>
