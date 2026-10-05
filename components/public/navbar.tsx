@@ -31,6 +31,34 @@ export default function Navbar({ className }: { className?: string }) {
   const maxWidth = useTransform(scrollY, [0, 100], ["1152px", "640px"]);
   const topScroll = useTransform(scrollY, [0, 100], ["24px", "12px"]);
 
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    if (href === "/") {
+      if (pathname === "/") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (window.location.hash) {
+          window.history.pushState(null, "", "/");
+        }
+      }
+      return;
+    }
+
+    if (href.startsWith("/#") || href.startsWith("#")) {
+      const targetId = href.replace(/^\/?#/, "");
+      if (pathname === "/") {
+        e.preventDefault();
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+          window.history.pushState(null, "", `#${targetId}`);
+        }
+      }
+    }
+  };
+
   return (
     <motion.div
       initial={{ y: -100, opacity: 0 }}
@@ -46,7 +74,11 @@ export default function Navbar({ className }: { className?: string }) {
       className={cn("fixed inset-x-0 z-50 mx-auto w-full px-4", className)}
     >
       <nav className="relative flex items-center justify-between rounded-full border border-border/80 bg-background/80 px-3 py-1.5 shadow-sm backdrop-blur-md sm:px-6 sm:py-2.5 dark:border-border/60 dark:bg-card/75">
-        <Link href="/" className="flex shrink-0 items-center">
+        <Link
+          href="/"
+          onClick={(e) => handleNavClick(e, "/")}
+          className="flex shrink-0 items-center"
+        >
           <span className="text-primary font-mono text-base font-bold tracking-tighter transition-opacity hover:opacity-80 sm:text-lg">
             AH
           </span>
@@ -65,6 +97,7 @@ export default function Navbar({ className }: { className?: string }) {
                 <Link
                   key={item.name}
                   href={item.link}
+                  onClick={(e) => handleNavClick(e, item.link)}
                   onMouseEnter={() => setHoveredIndex(index)}
                   onMouseLeave={() => setHoveredIndex(null)}
                   className={cn(

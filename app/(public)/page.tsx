@@ -8,8 +8,24 @@ import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import Link from "next/link";
 import { NAV_ITEMS, SITE_CONFIG } from "@/config/site";
 import { ContactForm } from "@/components/public/contact-form";
+import { SmoothAnchor } from "@/components/public/smooth-anchor";
 
 // --- DATA CONFIGURATION ---
+
+const WORK_EXPERIENCE_SKILLS = [
+  "TypeScript",
+  "React",
+  "Next.js",
+  "Tailwind CSS",
+  "Tauri v2",
+  "Electron",
+  "Node.js",
+  "Express",
+  "PostgreSQL",
+  "Prisma",
+  "WebSockets",
+  "Git",
+];
 
 const HERO_WORDS = [
   { text: "Full-Stack" },
@@ -200,10 +216,10 @@ export default function HomePage() {
 
           <div className="animate-in fade-in slide-in-from-left-3 mt-4 mb-8 flex flex-wrap justify-center gap-4 duration-1000">
             <Button size="lg" className="group gap-2 rounded-full px-8" asChild>
-              <Link href="#work">
+              <SmoothAnchor href="#work">
                 View Work
                 <ArrowRight className="transition-transform group-hover:translate-x-1" />
-              </Link>
+              </SmoothAnchor>
             </Button>
             <Button
               size="lg"
@@ -211,7 +227,7 @@ export default function HomePage() {
               className="rounded-full px-8"
               asChild
             >
-              <Link href="#contact">Get in Touch</Link>
+              <SmoothAnchor href="#contact">Get in Touch</SmoothAnchor>
             </Button>
           </div>
 
@@ -668,6 +684,23 @@ export default function HomePage() {
                 </span>
               </li>
             </ul>
+
+            {/* Technologies & Skills Badges */}
+            <div className="border-border/60 mt-8 border-t pt-6">
+              <h4 className="text-muted-foreground mb-3 text-xs font-semibold tracking-wider uppercase">
+                Technologies & Core Skills
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {WORK_EXPERIENCE_SKILLS.map((skill) => (
+                  <span
+                    key={skill}
+                    className="border-border/60 bg-secondary/50 text-foreground/80 hover:text-foreground hover:border-primary/40 hover:bg-secondary inline-flex items-center rounded-lg border px-2.5 py-1 font-mono text-xs font-medium transition-colors"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -732,7 +765,7 @@ export default function HomePage() {
 
         {/* Alternative Email Direct Link & Social Icons */}
         <div className="flex flex-col items-center gap-6 pt-2">
-          <p className="text-muted-foreground text-xs font-mono">
+          <p className="text-muted-foreground font-mono text-xs">
             Or reach out directly at{" "}
             <a
               href={`mailto:${SITE_CONFIG.email}?subject=Opportunity%20/%20Project%20Inquiry`}
@@ -746,7 +779,7 @@ export default function HomePage() {
             <Button
               variant="outline"
               size="icon"
-              className="size-12 rounded-full focus-visible:ring-2 focus-visible:ring-primary/40"
+              className="focus-visible:ring-primary/40 size-12 rounded-full focus-visible:ring-2"
               asChild
             >
               <a
@@ -755,14 +788,17 @@ export default function HomePage() {
                 rel="noreferrer"
                 aria-label="Visit GitHub Profile (opens in new tab)"
               >
-                <i className="devicon-github-plain text-xl" aria-hidden="true"></i>
+                <i
+                  className="devicon-github-plain text-xl"
+                  aria-hidden="true"
+                ></i>
                 <span className="sr-only">Visit GitHub Profile</span>
               </a>
             </Button>
             <Button
               variant="outline"
               size="icon"
-              className="size-12 rounded-full focus-visible:ring-2 focus-visible:ring-primary/40"
+              className="focus-visible:ring-primary/40 size-12 rounded-full focus-visible:ring-2"
               asChild
             >
               <a
@@ -771,7 +807,10 @@ export default function HomePage() {
                 rel="noreferrer"
                 aria-label="Visit LinkedIn Profile (opens in new tab)"
               >
-                <i className="devicon-linkedin-plain text-xl" aria-hidden="true"></i>
+                <i
+                  className="devicon-linkedin-plain text-xl"
+                  aria-hidden="true"
+                ></i>
                 <span className="sr-only">Visit LinkedIn Profile</span>
               </a>
             </Button>
