@@ -1,4 +1,11 @@
-import { Monitor, Globe, LucideIcon } from "lucide-react";
+﻿import {
+  Monitor,
+  Globe,
+  Server,
+  Smartphone,
+  Cpu,
+  LucideIcon,
+} from "lucide-react";
 
 export interface ProjectPlatform {
   name: string;
@@ -6,6 +13,7 @@ export interface ProjectPlatform {
 }
 
 export interface Project {
+  id?: string;
   slug: string;
   title: string;
   subtitle: string;
@@ -15,20 +23,58 @@ export interface Project {
   highlights: string[];
   scopeNote?: string;
   outcome: string;
+  links?: string[];
 }
 
 export const PROJECTS: Project[] = [
   {
+    id: "smarthire",
+    slug: "smarthire",
+    title: "SmartHire",
+    subtitle: "AI-Assisted Candidate Screening & Evaluation Engine",
+    role: "Lead Full-Stack & Systems Engineer",
+    platforms: [
+      { name: "Web Application", icon: Globe },
+      { name: "FastAPI Microservice", icon: Server },
+    ],
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "Prisma",
+      "Ollama",
+      "Tailwind CSS",
+    ],
+    highlights: [
+      "Engineered a decoupled two-tier evaluation system: LLM handles categorical criteria matching with exact text citations, while a deterministic formula computes weighted applicant scores (skills, experience, education).",
+      "Built document deduplication using SHA-256 file checksums and in-memory extraction locks to eliminate redundant LLM calls on concurrent uploads.",
+      "Implemented candidate identity resolution with phone/email normalization and automated cross-job conflict detection.",
+      "Integrated local PDF text extraction via WebAssembly/unpdf and streaming NDJSON endpoints for interactive CV querying and gap-focused interview prep generation.",
+    ],
+    outcome:
+      "Eliminated arbitrary LLM scoring variance by separating semantic classification from mathematical evaluation, providing recruiters with deterministic candidate rankings and verified source citations.",
+    links: [],
+  },
+  {
     slug: "qarawiyyin",
     title: "Project Qarawiyyin",
-    subtitle: "University Management Ecosystem",
+    subtitle: "University Management System",
     role: "Lead Full-Stack Engineer",
     platforms: [
       { name: "Admin Desktop", icon: Monitor },
       { name: "Student Web Portal", icon: Globe },
       { name: "Professor Web Portal", icon: Globe },
     ],
-    stack: ["Electron", "TypeScript", "React", "Tailwind CSS", "WebSockets"],
+    stack: [
+      "Electron",
+      "TypeScript",
+      "React",
+      "Node.js",
+      "Tailwind CSS",
+      "WebSockets",
+    ],
     highlights: [
       "Engineered component-level RBAC and real-time state synchronization via WebSockets.",
       "Module-based architecture covering HR, Pedagogy, Exams, and Payments.",
@@ -44,8 +90,8 @@ export const PROJECTS: Project[] = [
   {
     slug: "nid",
     title: "Project Nid",
-    subtitle: "Government Grant Decision Support System",
-    role: "Lead Full Stack Developer",
+    subtitle: "Grant Application & Scoring System",
+    role: "Lead Full-Stack Engineer",
     platforms: [
       { name: "Admin Desktop", icon: Monitor },
       { name: "Public Submission Portal", icon: Globe },
@@ -60,5 +106,120 @@ export const PROJECTS: Project[] = [
     ],
     outcome:
       "Replaced manual Excel-based evaluations with a secure, automated decision-making tool, significantly reducing processing time and human error in grant distribution.",
+  },
+  {
+    id: "exact-pos",
+    slug: "exact-pos",
+    title: "Exact POS & Retail ERP",
+    subtitle: "Desktop Point-of-Sale & Store Management System",
+    role: "Lead Frontend Engineer",
+    platforms: [
+      { name: "Desktop Client (Electron)", icon: Monitor },
+      { name: "Real-time Mobile Sync", icon: Smartphone },
+    ],
+    stack: [
+      "Electron",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Socket.IO",
+      "jsPDF",
+      "electron-updater",
+    ],
+    highlights: [
+      "Built a high-throughput desktop point-of-sale interface featuring barcode scanning, tiered discount calculations, and complex multi-tender split payments (cash, card, and multi-cheque schedules).",
+      "Engineered real-time mobile-to-desktop register synchronization using Socket.IO, allowing floor staff to scan carts on mobile that instantly populate the cashier's checkout drawer.",
+      "Implemented bilingual (French/Arabic) invoice and thermal receipt generation with jsPDF, embedding vector Arabic typography (Amiri) and dynamic RTL layouts.",
+      "Integrated automated desktop updates and release pipelines via electron-updater alongside daily cash reconciliation and session closing workflows.",
+    ],
+    outcome:
+      "Streamlined retail checkout workflows and unified multi-device operations into a single synchronized register, handling daily transaction accounting and automated receipt issuance.",
+    links: [],
+  },
+  {
+    id: "mystore-cms",
+    slug: "mystore-cms",
+    title: "MyStore E-Commerce & Content CMS",
+    subtitle: "Administrative Back-Office & Storefront Management Engine",
+    role: "Lead Frontend Engineer",
+    platforms: [{ name: "Web Application (SPA)", icon: Globe }],
+    stack: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Radix UI",
+      "Recharts",
+      "react-intl",
+    ],
+    highlights: [
+      "Architected an administrative back-office managing multi-variant catalog data, inventory levels, flash sale schedules, and media uploads via multipart/form-data.",
+      "Engineered a dual-state order fulfillment pipeline separating payment reconciliation from multi-stage shipping logistics (in-transit, delivery tracking, and returns).",
+      "Built a dynamic bilingual RTL/LTR engine supporting over 500 localized strings, automatically switching document direction and font families (Almarai for Arabic, Roboto for French).",
+      "Integrated a live storefront theme customizer with dynamic hex color tokens, banner sequencing, WYSIWYG rich-text editing, and Recharts sales turnover analytics.",
+    ],
+    outcome:
+      "Delivered a centralized operational dashboard replacing fragmented manual spreadsheets with unified order tracking, catalog management, and storefront customization.",
+    links: [],
+  },
+  {
+    id: "vaa-associations",
+    slug: "vaa-associations",
+    title: "VAA - Virtual Assistant for Associations",
+    subtitle: "Full-Stack NGO Governance & Document Automation Platform",
+    role: "Lead Full-Stack Developer",
+    platforms: [
+      { name: "Web Application (SPA & Next.js)", icon: Globe },
+      { name: "Node.js REST API", icon: Server },
+    ],
+    stack: [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "MySQL",
+      "Prisma",
+      "@react-pdf/renderer",
+      "Tailwind CSS",
+    ],
+    highlights: [
+      "Engineered a browser-side document compilation engine using @react-pdf/renderer with embedded Arabic typography (Cairo), generating legally compliant NGO bylaws, assembly minutes, and invoices without server rendering overhead.",
+      "Built an on-premise Arabic conversational NLP assistant using node-nlp and arabic-stemmer, featuring live model retraining and bulk dataset management via Excel.",
+      "Architected administrative modules for association lifecycle tracking: constituent assembly quorum logging, executive board registers, and grant opportunity aggregations.",
+      "Led the full-stack architecture across a decoupled Express/MySQL backend and Vite client, initiating a modernized Next.js 16 and Prisma ORM migration.",
+    ],
+    outcome:
+      "Digitized legal association formation and governance workflows across regional organizations, replacing manual paperwork with automated document compilation and self-contained Arabic NLP guidance.",
+    links: [],
+  },
+  {
+    id: "yosan-budget",
+    slug: "yosan-budget",
+    title: "Yosan - Public Procurement & Budget ERP",
+    subtitle: "Desktop Budget Execution & Expenditure Lifecycle System",
+    role: "Lead Frontend Engineer",
+    platforms: [
+      { name: "Desktop Client (Tauri v2)", icon: Monitor },
+      { name: "Native Windows Bundle", icon: Cpu },
+    ],
+    stack: [
+      "Tauri v2",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Rust",
+      "Bun",
+      "xlsx",
+      "jsPDF",
+    ],
+    highlights: [
+      "Engineered a lightweight desktop client using Tauri v2, React 19, and Bun, featuring native OS file dialogs and background auto-updating via GitHub releases.",
+      "Modeled the Moroccan public expenditure pipeline: procurement act creation, supplier commission evaluation, delivery validation, tax withholdings (TVA/IS), and Treasury dispatch (Bordereau Trésor).",
+      "Implemented arbitrary-precision financial calculations using BigInt integer-cent conversion to prevent IEEE 754 floating-point drift in budget allocations.",
+      "Built a hierarchical Excel ingestion engine parsing 4-level budget structures (Chapitre > Article > Paragraphe > Ligne) with line-by-line syntax validation and client-side procurement PDF generation.",
+    ],
+    outcome:
+      "Replaced manual spreadsheet-based budget tracking with a sub-15MB native desktop ERP, enforcing procedural validation across public procurement acts and treasury disbursements.",
+    links: [],
   },
 ];

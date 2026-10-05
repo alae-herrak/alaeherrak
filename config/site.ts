@@ -1,5 +1,6 @@
 export const NAV_ITEMS = [
-  { name: "Home", link: "/" },
+  { name: "Work", link: "/#work" },
+  { name: "Experience", link: "/#experience" },
   { name: "Projects", link: "/projects" },
   { name: "Contact", link: "/#contact" },
 ];

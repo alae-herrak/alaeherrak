@@ -41,21 +41,20 @@ export default function ProjectsPage() {
         {PROJECTS.map((project, projectIndex) => (
           <section
             key={project.slug}
+            id={project.slug}
             className={cn(
-              "group animate-in fade-in slide-in-from-bottom-6",
-              "relative overflow-hidden rounded-[2.5rem] border transition-all duration-500",
-              "border-border/50 from-secondary/5 via-background to-secondary/10 bg-gradient-to-br",
-              "hover:border-primary/30 hover:shadow-primary/5 hover:shadow-2xl",
+              "group animate-in fade-in slide-in-from-bottom-6 scroll-mt-28",
+              "relative overflow-hidden rounded-[2.5rem] transition-all duration-500",
+              "portfolio-card",
+              "hover:border-primary/50 hover:shadow-primary/10 hover:shadow-2xl",
             )}
             style={{ animationDelay: `${projectIndex * 150}ms` }}
           >
             {/* Decorative Background Elements */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-              <div className="bg-primary/5 group-hover:bg-primary/10 absolute -top-24 -right-24 h-64 w-64 rounded-full blur-[100px] transition-all duration-700" />
-              <div className="bg-primary/3 absolute -bottom-32 -left-32 h-72 w-72 rounded-full blur-[120px]" />
-              <div className="absolute top-6 right-6 opacity-[0.03] transition-opacity duration-500 group-hover:opacity-[0.08]">
-                <Cpu className="size-32 md:size-48" strokeWidth={0.5} />
-              </div>
+              <div className="bg-primary/5 group-hover:bg-primary/10 absolute -top-24 -right-24 h-72 w-72 rounded-full blur-[110px] transition-all duration-700" />
+              <div className="bg-primary/[0.03] absolute -bottom-32 -left-32 h-80 w-80 rounded-full blur-[130px]" />
+
             </div>
 
             <div className="relative p-8 md:p-12 lg:p-16">
@@ -163,8 +162,8 @@ export default function ProjectsPage() {
                   <div
                     className={cn(
                       "rounded-2xl border p-6",
-                      "from-primary/5 via-background bg-gradient-to-br to-transparent",
-                      "border-primary/20 hover:border-primary/40",
+                      "bg-primary/5 dark:bg-primary/[0.03]",
+                      "border-primary/20 hover:border-primary/30",
                       "hover:shadow-primary/5 transition-all duration-300 hover:shadow-lg",
                     )}
                   >
