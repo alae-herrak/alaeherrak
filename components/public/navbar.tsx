@@ -45,9 +45,9 @@ export default function Navbar({ className }: { className?: string }) {
       }}
       className={cn("fixed inset-x-0 z-50 mx-auto w-full px-4", className)}
     >
-      <nav className="relative flex items-center justify-between rounded-full border border-black/[0.1] bg-white/70 px-6 py-3 shadow-sm backdrop-blur-md dark:border-white/[0.1] dark:bg-black/20">
+      <nav className="relative flex items-center justify-between rounded-full border border-border/80 bg-background/80 px-6 py-2.5 shadow-sm backdrop-blur-md dark:border-border/60 dark:bg-card/75">
         <Link href="/" className="flex shrink-0 items-center">
-          <span className="text-primary font-mono text-lg font-bold tracking-tighter transition-opacity hover:opacity-70">
+          <span className="text-primary font-mono text-lg font-bold tracking-tighter transition-opacity hover:opacity-80">
             AH
           </span>
         </Link>
