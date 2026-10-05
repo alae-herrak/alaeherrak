@@ -149,8 +149,8 @@ const TechIcon = ({ name, icon, customIcon, color, darkText }: TechItem) => {
         {customIcon ? (
           customIcon
         ) : (
-          <span className="text-base leading-none">
-            <i className={icon}></i>
+          <span className="text-base leading-none" aria-hidden="true">
+            <i className={icon} aria-hidden="true"></i>
           </span>
         )}
       </div>
@@ -746,31 +746,33 @@ export default function HomePage() {
             <Button
               variant="outline"
               size="icon"
-              className="size-12 rounded-full"
+              className="size-12 rounded-full focus-visible:ring-2 focus-visible:ring-primary/40"
               asChild
             >
               <a
                 href={SITE_CONFIG.links.github}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="GitHub Profile"
+                aria-label="Visit GitHub Profile (opens in new tab)"
               >
-                <i className="devicon-github-plain text-xl"></i>
+                <i className="devicon-github-plain text-xl" aria-hidden="true"></i>
+                <span className="sr-only">Visit GitHub Profile</span>
               </a>
             </Button>
             <Button
               variant="outline"
               size="icon"
-              className="size-12 rounded-full"
+              className="size-12 rounded-full focus-visible:ring-2 focus-visible:ring-primary/40"
               asChild
             >
               <a
                 href={SITE_CONFIG.links.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="LinkedIn Profile"
+                aria-label="Visit LinkedIn Profile (opens in new tab)"
               >
-                <i className="devicon-linkedin-plain text-xl"></i>
+                <i className="devicon-linkedin-plain text-xl" aria-hidden="true"></i>
+                <span className="sr-only">Visit LinkedIn Profile</span>
               </a>
             </Button>
           </div>
