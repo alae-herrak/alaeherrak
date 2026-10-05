@@ -8,10 +8,9 @@ export const NAV_ITEMS = [
 export const SITE_CONFIG = {
   name: "Alae Herrak",
   title: "Alae Herrak | Full-Stack Software Engineer",
-  email: "alaeherrak.dev@gmail.com",
+  email: "alaeherrak@gmail.com",
   links: {
     github: "https://github.com/alae-herrak",
     linkedin: "https://linkedin.com/in/alae-herrak-ba9039210",
-    twitter: "https://x.com/HerrakAlae",
   },
 };
