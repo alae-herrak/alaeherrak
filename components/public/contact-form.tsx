@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useActionState, useEffect, useRef, useState, useTransition } from "react";
+import React, { useActionState, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,12 +13,14 @@ import {
 import { toast } from "sonner";
 import { AlertCircle, CheckCircle2, Loader2, Send } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/lib/i18n";
 
 const initialState: ContactActionState = {
   success: false,
 };
 
 export function ContactForm() {
+  const { t } = useLanguage();
   const [state, formAction, isPending] = useActionState(
     sendContactEmail,
     initialState
@@ -44,22 +46,22 @@ export function ContactForm() {
   const validateField = (name: string, value: string): string | undefined => {
     const trimmed = value.trim();
     if (name === "name") {
-      if (!trimmed) return "Please enter your name.";
-      if (trimmed.length < 2) return "Name must be at least 2 characters.";
-      if (trimmed.length > 80) return "Name cannot exceed 80 characters.";
+      if (!trimmed) return t.contact.errors.nameRequired;
+      if (trimmed.length < 2) return t.contact.errors.nameMin;
+      if (trimmed.length > 80) return t.contact.errors.nameMax;
     }
     if (name === "email") {
-      if (!trimmed) return "Please enter your email address.";
+      if (!trimmed) return t.contact.errors.emailRequired;
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(trimmed)) {
-        return "Please enter a valid email address (e.g. name@domain.com).";
+        return t.contact.errors.emailInvalid;
       }
-      if (trimmed.length > 120) return "Email cannot exceed 120 characters.";
+      if (trimmed.length > 120) return t.contact.errors.emailMax;
     }
     if (name === "message") {
-      if (!trimmed) return "Please enter a message.";
-      if (trimmed.length < 10) return "Message must be at least 10 characters.";
-      if (trimmed.length > 3000) return "Message cannot exceed 3,000 characters.";
+      if (!trimmed) return t.contact.errors.messageRequired;
+      if (trimmed.length < 10) return t.contact.errors.messageMin;
+      if (trimmed.length > 3000) return t.contact.errors.messageMax;
     }
     return undefined;
   };
@@ -100,26 +102,24 @@ export function ContactForm() {
 
     if (nameErr || emailErr || msgErr) {
       e.preventDefault();
-      toast.error("Please fill out all fields correctly.");
+      toast.error(t.contact.errors.nameRequired);
       return;
     }
   };
 
   useEffect(() => {
     if (state.success && state.timestamp) {
-      toast.success("Message sent successfully!", {
-        description: "Thank you for reaching out. I'll get back to you soon.",
-      });
+      toast.success(t.contact.successToast);
       formRef.current?.reset();
       setValues({ name: "", email: "", message: "" });
       setTouched({});
       setClientErrors({});
     } else if (state.error && state.timestamp) {
-      toast.error("Failed to send message", {
+      toast.error(t.contact.errorToast, {
         description: state.error,
       });
     }
-  }, [state]);
+  }, [state, t]);
 
   return (
     <form
@@ -148,7 +148,7 @@ export function ContactForm() {
             htmlFor="name"
             className="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
           >
-            Your Name
+            {t.contact.nameLabel}
           </Label>
           <div id="name-error" aria-live="polite" className="min-h-[16px]">
             {activeErrors.name && (
@@ -166,7 +166,7 @@ export function ContactForm() {
           value={values.name}
           onChange={(e) => handleChange("name", e)}
           onBlur={() => handleBlur("name")}
-          placeholder="e.g. Alex Morgan"
+          placeholder={t.contact.namePlaceholder}
           disabled={isPending}
           aria-invalid={!!activeErrors.name}
           aria-describedby={activeErrors.name ? "name-error" : undefined}
@@ -185,7 +185,7 @@ export function ContactForm() {
             htmlFor="email"
             className="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
           >
-            Email Address
+            {t.contact.emailLabel}
           </Label>
           <div id="email-error" aria-live="polite" className="min-h-[16px]">
             {activeErrors.email && (
@@ -203,7 +203,7 @@ export function ContactForm() {
           value={values.email}
           onChange={(e) => handleChange("email", e)}
           onBlur={() => handleBlur("email")}
-          placeholder="alex@example.com"
+          placeholder={t.contact.emailPlaceholder}
           disabled={isPending}
           aria-invalid={!!activeErrors.email}
           aria-describedby={activeErrors.email ? "email-error" : undefined}
@@ -222,7 +222,7 @@ export function ContactForm() {
             htmlFor="message"
             className="text-xs font-semibold uppercase tracking-wider text-muted-foreground"
           >
-            Message
+            {t.contact.messageLabel}
           </Label>
           <div className="flex items-center gap-3">
             <div id="message-error" aria-live="polite" className="min-h-[16px]">
@@ -252,7 +252,7 @@ export function ContactForm() {
           value={values.message}
           onChange={(e) => handleChange("message", e)}
           onBlur={() => handleBlur("message")}
-          placeholder="Tell me about your project, timeline, or engineering inquiry..."
+          placeholder={t.contact.messagePlaceholder}
           rows={4}
           disabled={isPending}
           aria-invalid={!!activeErrors.message}
@@ -289,7 +289,7 @@ export function ContactForm() {
           className="rounded-xl border border-primary/30 bg-primary/10 p-3.5 text-xs text-primary flex items-start gap-2.5"
         >
           <CheckCircle2 className="size-4 shrink-0 mt-0.5" aria-hidden="true" />
-          <span>Message received. I will review and reply to your email shortly.</span>
+          <span>{t.contact.successToast}</span>
         </div>
       )}
 
@@ -302,12 +302,12 @@ export function ContactForm() {
         {isPending ? (
           <>
             <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-            <span>Sending Message...</span>
+            <span>{t.contact.sendingButton}</span>
           </>
         ) : (
           <>
             <Send className="size-4" aria-hidden="true" />
-            <span>Send Message</span>
+            <span>{t.contact.sendButton}</span>
           </>
         )}
       </Button>

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { LanguageProvider } from "@/lib/i18n";
 import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
@@ -141,8 +142,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Toaster position="bottom-right" richColors />
+          <LanguageProvider>
+            {children}
+            <Toaster position="bottom-right" richColors />
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>
