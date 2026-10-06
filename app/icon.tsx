@@ -5,8 +5,8 @@ export const runtime = "edge";
 
 // Image metadata
 export const size = {
-  width: 32,
-  height: 32,
+  width: 96,
+  height: 96,
 };
 
 export const contentType = "image/png";
@@ -23,10 +23,10 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           background: "#090d16",
-          borderRadius: "8px",
-          border: "1px solid rgba(255, 255, 255, 0.15)",
+          borderRadius: "20px",
+          border: "2px solid rgba(255, 255, 255, 0.15)",
           color: "#38bdf8",
-          fontSize: "17px",
+          fontSize: "50px",
           fontWeight: 800,
           fontFamily:
             'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',

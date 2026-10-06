@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { GridBackground } from "@/components/ui/grid-background";
 import { cn } from "@/lib/utils";
 import { ScrollIcon, ScrollIndicator } from "@/components/ui/scroll-indicator";
@@ -9,6 +9,7 @@ import Link from "next/link";
 import { NAV_ITEMS, SITE_CONFIG } from "@/config/site";
 import { ContactForm } from "@/components/public/contact-form";
 import { SmoothAnchor } from "@/components/public/smooth-anchor";
+import { ResumeLinks } from "@/components/public/resume-links";
 
 // --- DATA CONFIGURATION ---
 
@@ -214,8 +215,8 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="animate-in fade-in slide-in-from-left-3 mt-4 mb-8 flex flex-wrap justify-center gap-4 duration-1000">
-            <Button size="lg" className="group gap-2 rounded-full px-8" asChild>
+          <div className="animate-in fade-in slide-in-from-left-3 mt-4 mb-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4 duration-1000">
+            <Button size="lg" className="order-1 group gap-2 rounded-full px-6 sm:px-8" asChild>
               <SmoothAnchor href="#work">
                 View Work
                 <ArrowRight className="transition-transform group-hover:translate-x-1" />
@@ -224,11 +225,14 @@ export default function HomePage() {
             <Button
               size="lg"
               variant="outline"
-              className="rounded-full px-8"
+              className="order-2 sm:order-3 rounded-full px-6 sm:px-8"
               asChild
             >
               <SmoothAnchor href="#contact">Get in Touch</SmoothAnchor>
             </Button>
+            <div className="order-3 sm:order-2 w-full flex justify-center sm:w-auto">
+              <ResumeLinks />
+            </div>
           </div>
 
           <ScrollIcon />
