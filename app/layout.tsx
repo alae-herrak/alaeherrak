@@ -66,7 +66,7 @@ export const metadata: Metadata = {
       "Specializing in resilient web applications, granular access control systems, and high-performance cross-platform runtimes.",
     creator: "@HerrakAlae",
   },
-  robots: {
+    robots: {
     index: true,
     follow: true,
     googleBot: {
@@ -76,6 +76,14 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  icons: {
+    icon: [
+      { url: "/icon.png", sizes: "96x96", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-icon", sizes: "180x180", type: "image/png" },
+    ],
   },
 };
 
